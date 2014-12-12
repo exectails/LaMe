@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
 			this.WebPatchNotes = new System.Windows.Forms.WebBrowser();
 			this.LblStatus = new System.Windows.Forms.Label();
 			this.BtnStart = new LaMe.ImageButton();
@@ -96,6 +97,7 @@
 			this.Controls.Add(this.WebPatchNotes);
 			this.Controls.Add(this.BtnClose);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FrmMain";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "LaMe";
