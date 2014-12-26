@@ -105,8 +105,10 @@ namespace LaMe
 				ini.Write("Client", "Exe", "client.exe");
 				ini.Write("Client", "Parameters", "code:1622 ver:143 logip:127.0.0.1 logport:11000 chatip:127.0.0.1 chatport:8002 setting:\"file://data/features.xml=Regular, USA\"");
 
-				ini.Write("Packages", "Url", "http://aura-project.org/patch/");
+				ini.Write("Packages", "Url", "");
 				ini.Write("Packages", "List", "packages.txt");
+
+				ini.Write("Features", "Bgm", "");
 			}
 
 			// Read ini
