@@ -18,7 +18,7 @@ namespace LaMe
 {
 	public partial class FrmMain : Form
 	{
-		private const string IniFile = "LaMe.ini";
+		private const string IniFileName = "conf.ini";
 		private const string PackageFolder = "package/";
 
 		private string exeName, exeParameters;
@@ -62,7 +62,7 @@ namespace LaMe
 			var assemblyName = Path.GetFileNameWithoutExtension(GetType().Assembly.Location);
 
 			// Ini file name = assembly name + ".ini"
-			var iniFileName = assemblyName + ".ini";
+			var iniFileName = Path.Combine(assemblyName, IniFileName);
 
 			var ini = new IniFile(iniFileName);
 
