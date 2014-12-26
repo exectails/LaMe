@@ -72,20 +72,14 @@ namespace LaMe
 				if (MessageBox.Show(string.Format(Lang.NewIniQuery, iniFileName), Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Cancel)
 					Application.Exit();
 
-				ini.Write("Window", "Width", 700);
-				ini.Write("Window", "Height", 500);
 				ini.Write("Window", "Background", "window.png");
 
-				ini.Write("CloseButton", "Width", 24);
-				ini.Write("CloseButton", "Height", 24);
 				ini.Write("CloseButton", "X", 656);
 				ini.Write("CloseButton", "Y", 20);
 				ini.Write("CloseButton", "Normal", "close-normal.png");
 				ini.Write("CloseButton", "Hover", "close-hover.png");
 				ini.Write("CloseButton", "Down", "close-down.png");
 
-				ini.Write("StartButton", "Width", 150);
-				ini.Write("StartButton", "Height", 50);
 				ini.Write("StartButton", "X", 530);
 				ini.Write("StartButton", "Y", 428);
 				ini.Write("StartButton", "Normal", "start-normal.png");
@@ -112,13 +106,9 @@ namespace LaMe
 			}
 
 			// Read ini
-			var windowWidth = ini.ReadInt32("Window", "Width");
-			var windowHeight = ini.ReadInt32("Window", "Height");
 			var windowImageName = ini.Read("Window", "Background");
 			var windowImagePath = Path.Combine(assemblyName, windowImageName);
 
-			var closeWidth = ini.ReadInt32("CloseButton", "Width");
-			var closeHeight = ini.ReadInt32("CloseButton", "Height");
 			var closeX = ini.ReadInt32("CloseButton", "X");
 			var closeY = ini.ReadInt32("CloseButton", "Y");
 			var closeNormalName = ini.Read("CloseButton", "Normal");
@@ -128,8 +118,6 @@ namespace LaMe
 			var closeHoverPath = Path.Combine(assemblyName, closeHoverName);
 			var closeDownPath = Path.Combine(assemblyName, closeDownName);
 
-			var startWidth = ini.ReadInt32("StartButton", "Width");
-			var startHeight = ini.ReadInt32("StartButton", "Height");
 			var startX = ini.ReadInt32("StartButton", "X");
 			var startY = ini.ReadInt32("StartButton", "Y");
 			var startNormalName = ini.Read("StartButton", "Normal");
@@ -160,13 +148,6 @@ namespace LaMe
 
 			var bgm = ini.Read("Features", "Bgm");
 
-			// Check window size
-			if (windowWidth == 0 || windowHeight == 0)
-			{
-				MessageBox.Show(string.Format(Lang.WindowSizeFail, iniFileName), Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				Application.Exit();
-			}
-
 			// Check images
 			foreach (var check in new string[] { windowImageName, closeNormalName, startNormalName })
 			{
@@ -191,9 +172,9 @@ namespace LaMe
 			}
 
 			// Set window
-			Width = windowWidth;
-			Height = windowHeight;
 			BackgroundImage = new Bitmap(windowImagePath);
+			Width = BackgroundImage.Width;
+			Height = BackgroundImage.Height;
 
 			// Set patch notes
 			WebPatchNotes.Width = patchWidth;
@@ -203,20 +184,20 @@ namespace LaMe
 			WebPatchNotes.Navigate(patchUrl);
 
 			// Set close button
-			BtnClose.Width = closeWidth;
-			BtnClose.Height = closeHeight;
+			BtnClose.Image = BtnClose.ImageNormal = new Bitmap(closeNormalPath);
+			BtnClose.Width = BtnClose.Image.Width;
+			BtnClose.Height = BtnClose.Image.Height;
 			BtnClose.Left = closeX;
 			BtnClose.Top = closeY;
-			BtnClose.Image = BtnClose.ImageNormal = new Bitmap(closeNormalPath);
 			if (!string.IsNullOrWhiteSpace(closeHoverName)) BtnClose.ImageHover = new Bitmap(closeHoverPath);
 			if (!string.IsNullOrWhiteSpace(closeDownName)) BtnClose.ImageDown = new Bitmap(closeDownPath);
 
 			// Set start button
-			BtnStart.Width = startWidth;
-			BtnStart.Height = startHeight;
+			BtnStart.ImageNormal = new Bitmap(startNormalPath);
+			BtnStart.Width = BtnStart.ImageNormal.Width;
+			BtnStart.Height = BtnStart.ImageNormal.Height;
 			BtnStart.Left = startX;
 			BtnStart.Top = startY;
-			BtnStart.ImageNormal = new Bitmap(startNormalPath);
 			if (!string.IsNullOrWhiteSpace(startHoverName)) BtnStart.ImageHover = new Bitmap(startHoverPath);
 			if (!string.IsNullOrWhiteSpace(startDownName)) BtnStart.ImageDown = new Bitmap(startDownPath);
 			if (!string.IsNullOrWhiteSpace(startDisabledName)) BtnStart.ImageDisabled = new Bitmap(startDisabledPath);
