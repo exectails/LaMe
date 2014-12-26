@@ -56,35 +56,27 @@
 			// BtnStart
 			// 
 			this.BtnStart.BackColor = System.Drawing.Color.Transparent;
-			this.BtnStart.FlatAppearance.BorderSize = 0;
-			this.BtnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.BtnStart.ImageDisabled = null;
 			this.BtnStart.ImageDown = null;
 			this.BtnStart.ImageHover = null;
 			this.BtnStart.ImageNormal = null;
-			this.BtnStart.Location = new System.Drawing.Point(530, 428);
-			this.BtnStart.Margin = new System.Windows.Forms.Padding(0);
+			this.BtnStart.Location = new System.Drawing.Point(529, 427);
 			this.BtnStart.Name = "BtnStart";
-			this.BtnStart.Size = new System.Drawing.Size(150, 50);
-			this.BtnStart.TabIndex = 2;
-			this.BtnStart.UseVisualStyleBackColor = false;
+			this.BtnStart.Size = new System.Drawing.Size(150, 49);
+			this.BtnStart.TabIndex = 5;
 			this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
 			// 
 			// BtnClose
 			// 
 			this.BtnClose.BackColor = System.Drawing.Color.Transparent;
-			this.BtnClose.FlatAppearance.BorderSize = 0;
-			this.BtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.BtnClose.ImageDisabled = null;
 			this.BtnClose.ImageDown = null;
 			this.BtnClose.ImageHover = null;
 			this.BtnClose.ImageNormal = null;
-			this.BtnClose.Location = new System.Drawing.Point(656, 20);
-			this.BtnClose.Margin = new System.Windows.Forms.Padding(0);
+			this.BtnClose.Location = new System.Drawing.Point(655, 12);
 			this.BtnClose.Name = "BtnClose";
 			this.BtnClose.Size = new System.Drawing.Size(24, 24);
-			this.BtnClose.TabIndex = 0;
-			this.BtnClose.UseVisualStyleBackColor = true;
+			this.BtnClose.TabIndex = 4;
 			this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
 			// 
 			// FrmMain
@@ -92,10 +84,10 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(700, 500);
-			this.Controls.Add(this.LblStatus);
 			this.Controls.Add(this.BtnStart);
-			this.Controls.Add(this.WebPatchNotes);
 			this.Controls.Add(this.BtnClose);
+			this.Controls.Add(this.LblStatus);
+			this.Controls.Add(this.WebPatchNotes);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FrmMain";
@@ -113,10 +105,10 @@
 
 		#endregion
 
-		private ImageButton BtnClose;
 		private System.Windows.Forms.WebBrowser WebPatchNotes;
-		private ImageButton BtnStart;
 		private System.Windows.Forms.Label LblStatus;
+		private ImageButton BtnClose;
+		private ImageButton BtnStart;
 	}
 }
 

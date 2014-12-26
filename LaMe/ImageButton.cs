@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
 namespace LaMe
 {
-	public class ImageButton : Button
+	public partial class ImageButton : UserControl
 	{
 		public Image ImageNormal { get; set; }
 		public Image ImageHover { get; set; }
@@ -19,19 +21,13 @@ namespace LaMe
 
 		public ImageButton()
 		{
-			FlatStyle = FlatStyle.Flat;
-			FlatAppearance.BorderSize = 0;
-			FlatAppearance.MouseDownBackColor = Color.Transparent;
-			FlatAppearance.MouseOverBackColor = Color.Transparent;
+			InitializeComponent();
+
 			BackColor = Color.Transparent;
-			Margin = new Padding(0);
-			Text = "";
 		}
 
 		protected override void OnPaint(PaintEventArgs pe)
 		{
-			base.OnPaint(pe);
-
 			var image = ImageNormal;
 
 			if (!Enabled)
@@ -48,42 +44,46 @@ namespace LaMe
 			}
 
 			if (image != null)
+			{
+				if (Width != image.Width || Height != image.Height)
+				{
+					Width = image.Width;
+					Height = image.Height;
+				}
+
 				pe.Graphics.DrawImage(image, Point.Empty);
+			}
 			else
 			{
 				pe.Graphics.FillRectangle(Brushes.White, new Rectangle(0, 0, Width, Height));
-				pe.Graphics.DrawString("ImageButton", Font, Brushes.Black, PointF.Empty);
+
+				var size = pe.Graphics.MeasureString(Name, Font);
+				pe.Graphics.DrawString(Name, Font, Brushes.Black, new PointF(Width / 2 - size.Width / 2, Height / 2 - size.Height / 2));
 			}
 		}
 
-		protected override void OnMouseEnter(EventArgs e)
+		private void ImageButton_MouseEnter(object sender, EventArgs e)
 		{
-			base.OnMouseEnter(e);
-
 			hover = true;
+			Refresh();
 		}
 
-		protected override void OnMouseLeave(EventArgs e)
+		private void ImageButton_MouseLeave(object sender, EventArgs e)
 		{
-			base.OnMouseLeave(e);
-
 			hover = false;
+			Refresh();
 		}
 
-		protected override void OnMouseDown(MouseEventArgs e)
+		private void ImageButton_MouseDown(object sender, MouseEventArgs e)
 		{
-			base.OnMouseDown(e);
-
 			down = true;
+			Refresh();
 		}
 
-		protected override void OnMouseUp(MouseEventArgs e)
+		private void ImageButton_MouseUp(object sender, MouseEventArgs e)
 		{
-			base.OnMouseUp(e);
-
 			down = false;
-
-			this.Refresh();
+			Refresh();
 		}
 	}
 }

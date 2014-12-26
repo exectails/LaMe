@@ -184,9 +184,9 @@ namespace LaMe
 			WebPatchNotes.Navigate(patchUrl);
 
 			// Set close button
-			BtnClose.Image = BtnClose.ImageNormal = new Bitmap(closeNormalPath);
-			BtnClose.Width = BtnClose.Image.Width;
-			BtnClose.Height = BtnClose.Image.Height;
+			BtnClose.ImageNormal = new Bitmap(closeNormalPath);
+			BtnClose.Width = BtnClose.ImageNormal.Width;
+			BtnClose.Height = BtnClose.ImageNormal.Height;
 			BtnClose.Left = closeX;
 			BtnClose.Top = closeY;
 			if (!string.IsNullOrWhiteSpace(closeHoverName)) BtnClose.ImageHover = new Bitmap(closeHoverPath);
